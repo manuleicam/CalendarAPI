@@ -1,0 +1,59 @@
+# Times Slots routes
+### delete timeslot based on userid and timeslotid
+####"/users/{userId}/time-slots/{timeSlotId}"
+
+Example: 
+
+    +   DELETE  localhost/users/1/time-slots/2    -> Deletes the time slot with id = 2 that belongs to the user with id = 1
+            Response Body:
+                Plain text: "Time slot deleted"
+
+### get and create user timeslot by user id
+####"/time-slots/users/{id}"
+
+Example: 
+
+    +   GET  localhost/time-slots/users/1  -> Gets the time slots for the user with id = 1
+            Response Body:
+                JSON    {
+                            "userID": 1,
+                            "days": [
+                                {
+                                    "id": 0,
+                                    "day": "2022-06-07T00:00:00Z",
+                                    "hourBeg": 9,
+                                    "hourEnd": 10
+                                }
+                            ]
+                        }
+    
+    +   POST  localhost/time-slots/users/1  -> Creates the time slots in the request body for the user with id = 1
+            Request Body:
+                JSON    {
+                            "days": [
+                                {
+                                    "day": "2022-06-07T00:00:00Z",
+                                    "hourBeg": 9,
+                                    "hourEnd": 10
+                                }
+                            ]
+                        }
+
+            Response Body:
+                Plain text: "Time Slot Created"        
+
+### get the match between users IDs (user id in query parameters)
+####"/time-slots/users?id=..."
+
+Example: 
+
+    +   GET  localhost/time-slots/users?id=1,2  -> Gets the time slots that match between the users with id 1 and 2
+            Response Body:
+                JSON    [
+                            {
+                                "id": 0,
+                                "day": "2022-06-07T00:00:00Z",
+                                "hourBeg": 9,
+                                "hourEnd": 10
+                            }
+                        ]

@@ -1,0 +1,49 @@
+# Times Slots Endpoints
+### Gets users, delete all users, creates new user
+#### "/users"
+
+Example: 
+    +   GET     localhost/users     -> Returns all users in JSON
+        Response Body:
+            JSON    [{
+                        "name": "NAME",
+                        "position": "POSITION"
+                    }]
+            
+    +   POST    localhost/users     -> Creates a new user and returns the new user ID
+        Request Body:
+            JSON    {
+                        "name": "NEW_NAME",
+                        "position": "NEW_POSITION"
+                    } 
+        Response Body:
+            Plain text: "New Id: 1"
+
+    +   DELETE  localhost/users     -> Deletes all the users
+        Response Body:
+            Plain text: "Users Removed"
+
+### // get, update and delete user info by user ID
+#### "/users/{id}"
+
+Example: 
+    +   GET     localhost/users/1     -> Returns info about user with id = 1
+        Response Body:
+            JSON    [{
+                        "name": "NAME",
+                        "position": "POSITION"
+                    }]
+            
+    +   PUT    localhost/users/1     -> updates the user info with id = 1 to the info in the request body
+        Request Body:
+            JSON    {
+                        "name": "NEW_NAME",
+                        "position": "NEW_POSITION"
+                    } 
+        Response Body:
+            Plain text: "ID: 1 Updated"
+
+    +   DELETE  localhost/users/1     -> Deletes the user with id = 1
+        Response Body:
+            Plain text: "ID: 1 Deleted"
+
