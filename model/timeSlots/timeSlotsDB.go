@@ -8,7 +8,7 @@ import (
 
 var timeSlotsTable map[int]TimeSlot
 
-// Functions that populates my DB based on the example cases used in GITLAB
+// Functions that populates my DB based on the example cases
 // Sunday = 0
 func StartTimeSlotsDB() {
 
