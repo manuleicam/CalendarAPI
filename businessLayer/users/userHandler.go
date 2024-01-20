@@ -1,8 +1,8 @@
 package userHandler
 
 import (
-	. "calendarApi/model/users"
 	. "calendarApi/module/users"
+	. "calendarApi/repository/users"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"

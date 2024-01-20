@@ -29,6 +29,23 @@ type DaysDispJSON struct {
 	HourEnd int       `json:"hourEnd"`
 }
 
+func NewTimeSlot(userId int, daysDisps []DaysDisp) *TimeSlot {
+
+	newDaysDisps := []DaysDisp{}
+
+	for _, daysDisp := range daysDisps {
+		newDaysDisps = append(newDaysDisps, *NewDaysDisp(daysDisp.id, daysDisp.day, daysDisp.hourBeg, daysDisp.hourEnd))
+	}
+
+	timeSlot := TimeSlot{userId, newDaysDisps}
+
+	return &timeSlot
+}
+
+func NewDaysDisp(id int, day time.Time, hourBeg int, hourEnd int) *DaysDisp {
+	return &DaysDisp{id, day, hourBeg, hourEnd}
+}
+
 func InitTimeSlot(userId int, day time.Time, hourBeg int, hourEnd int) TimeSlot {
 
 	initDay := DaysDisp{0, day, hourBeg, hourEnd}
@@ -37,6 +54,10 @@ func InitTimeSlot(userId int, day time.Time, hourBeg int, hourEnd int) TimeSlot 
 
 	return timeSlot
 
+}
+
+func (daysDis *DaysDisp) GetId() int {
+	return daysDis.id
 }
 
 func (daysDis *DaysDisp) GetDay() time.Time {
@@ -64,49 +85,6 @@ func (timeSlot *TimeSlot) GetDays() []DaysDisp {
 func (timeSlot *TimeSlot) SetUserID(id int) {
 
 	timeSlot.userID = id
-
-}
-
-// Return 0 if didn't the Time Slot ID
-// Return 1 if it deleted a time slot
-func (timeSlot *TimeSlot) DeleteTimeSlot(timeSlotId int) int {
-
-	for tsID, day := range timeSlot.days {
-
-		if day.id == timeSlotId {
-
-			timeSlot.days = append(timeSlot.days[:tsID], timeSlot.days[tsID+1:]...)
-
-			return 1
-
-		}
-
-	}
-
-	return 0
-
-}
-
-// Add a new day
-// If day already exists, add the new Hours
-// If hours already exist for the day, don't do anything
-// return 0 for update day
-// return 1 for create new day
-// return -1 didn't do anything
-func (timeSlot *TimeSlot) SetNewDay(newDay time.Time, hourBeg int, hourEnd int) int {
-
-	res := -1
-
-	for i := hourBeg; i < hourEnd; i++ {
-
-		resAux := timeSlot.setNewDay(newDay, i, i+1)
-		if resAux > res {
-			res = resAux
-		}
-
-	}
-
-	return res
 
 }
 

@@ -1,8 +1,8 @@
 package main
 
 import (
-	. "calendarApi/model/timeSlots"
-	. "calendarApi/model/users"
+	. "calendarApi/repository/timeSlots"
+	. "calendarApi/repository/users"
 	. "calendarApi/routes"
 )
 

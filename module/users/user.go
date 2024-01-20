@@ -12,6 +12,10 @@ type UserJSON struct {
 	Position string `json:"position"`
 }
 
+func NewUser(id int, name string, pos string) *User {
+	return &User{id, name, pos}
+}
+
 func IniUser(id int, name string, pos string) User {
 
 	newUser := User{id, name, pos}

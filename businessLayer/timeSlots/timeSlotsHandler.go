@@ -1,8 +1,8 @@
 package timeSlotsHandler
 
 import (
-	. "calendarApi/model/timeSlots"
 	. "calendarApi/module/timeSlots"
+	. "calendarApi/repositories/timeSlots"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
